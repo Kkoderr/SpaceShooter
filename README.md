@@ -23,7 +23,7 @@ Fly your spaceship, shoot incoming enemies, and survive as long as you can!
   ```bash
   pip install pygame
   ```
-##▶️ How to Play
+## ▶️ How to Play
 Run the game:
 ```bash
 python main.py
@@ -32,14 +32,14 @@ Controls:
 ← / → : Move left or right
 Space : Shoot
 
-##🛠 Built With
+## 🛠 Built With
 - Python
 - Pygame
 
-##📄 License
+## 📄 License
 This project is licensed under the MIT License. See LICENSE for details.
 
-##🌟 Contributing
+## 🌟 Contributing
 -Pull requests are welcome!
 -Feel free to open an issue or suggest features.
 
