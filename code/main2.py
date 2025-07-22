@@ -1,5 +1,3 @@
-from time import sleep
-
 import pygame
 import os
 from random import randint, uniform, random
@@ -17,7 +15,7 @@ class Player(pygame.sprite.Sprite):
     def __init__(self, groups: pygame.sprite.Group, laser_sprites: pygame.sprite.Group, laser_sound):
         super().__init__(groups)
         self.groups = groups
-        self.image = pygame.image.load(os.path.join('..','images','player.png')).convert_alpha()
+        self.image = pygame.image.load(os.path.join('images','player.png')).convert_alpha()
         self.rect = self.image.get_frect(center=(WINDOW_WIDTH//2,WINDOW_HEIGHT//2))
         self.direction = pygame.math.Vector2()
         self.speed = 0.01
@@ -73,7 +71,7 @@ class Stars(pygame.sprite.Sprite):
 class Meteor(pygame.sprite.Sprite):
     def __init__(self,groups):
         super().__init__(groups)
-        self.original_image = pygame.image.load(os.path.join('..','images','meteor.png')).convert_alpha()
+        self.original_image = pygame.image.load(os.path.join('images','meteor.png')).convert_alpha()
         self.image = self.original_image.copy()
         self.rect = self.image.get_frect(midtop=(randint(0,WINDOW_WIDTH),0))
         self.mov_direction = pygame.math.Vector2((randint(-1,1), 1))
@@ -93,7 +91,7 @@ class Meteor(pygame.sprite.Sprite):
 class Laser(pygame.sprite.Sprite):
     def __init__(self, groups, initital_position:tuple):
         super().__init__(groups)
-        self.image = pygame.image.load(os.path.join('..','images','laser.png')).convert_alpha()
+        self.image = pygame.image.load(os.path.join('images','laser.png')).convert_alpha()
         self.rect = self.image.get_frect(midbottom=initital_position)
         self.speed = 0.06
         self.mask = pygame.mask.from_surface(self.image)
@@ -126,12 +124,12 @@ class AnimatedExplosion(pygame.sprite.Sprite):
 #         AnimatedExplosion()
 
 all_sprites: pygame.sprite.Group = pygame.sprite.Group()
-stars_surf = pygame.image.load(os.path.join('..','images','star.png')).convert_alpha()
+stars_surf = pygame.image.load(os.path.join('images','star.png')).convert_alpha()
 for _ in range(20):
     Stars(all_sprites,stars_surf)
 
 laser_sprites = pygame.sprite.Group()
-laser_sound = pygame.mixer.Sound(os.path.join('..','audio','laser.wav'))
+laser_sound = pygame.mixer.Sound(os.path.join('audio','laser.wav'))
 laser_sound.set_volume(0.1)
 player = Player(all_sprites,laser_sprites,laser_sound)
 meteor_sprites = pygame.sprite.Group()
@@ -139,12 +137,12 @@ meteor_sprites = pygame.sprite.Group()
 meteor_event = pygame.event.custom_type()
 pygame.time.set_timer(meteor_event,1000)
 
-explosion_frames = [pygame.image.load(os.path.join('..','images','explosion',f'{i}.png')).convert_alpha() for i in range(21)]
-explosion_sound = pygame.mixer.Sound(os.path.join('..','audio','explosion.wav'))
+explosion_frames = [pygame.image.load(os.path.join('images','explosion',f'{i}.png')).convert_alpha() for i in range(21)]
+explosion_sound = pygame.mixer.Sound(os.path.join('audio','explosion.wav'))
 explosion_sound.set_volume(0.1)
 
 # damage_sound = pygame.mixer.Sound(os.path.join('..','audio','damage.ogg'))
-main_theme = pygame.mixer.Sound(os.path.join('..','audio','game_music.wav'))
+main_theme = pygame.mixer.Sound(os.path.join('audio','game_music.wav'))
 main_theme.set_volume(0.2)
 main_theme.play(loops=-1)
 score : int = 0
